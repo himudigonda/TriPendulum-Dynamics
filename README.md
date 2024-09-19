@@ -2,6 +2,10 @@
 
 ## Overview
 
+<center>
+<img src="assets/sim.gif">
+</center>
+
 This repository provides a comprehensive framework for running simulations, visualizing results, and providing a user-friendly interface to interact with the simulation environment. The system is built using Python, and the code is modular, allowing for easy scalability and integration with other projects or simulation models. The core components of the framework are organized in the `src` directory, and unit tests are provided to ensure correctness and robustness of the implementation.
 
 This project includes the following key functionalities:
@@ -87,6 +91,10 @@ Ensure you are using Python version 3.8 or higher for compatibility with the cod
 ---
 
 ## Testing Framework
+
+<center>
+<img src="assets/tests.png">
+</center>
 
 The project uses `pytest` as the testing framework. All unit tests are located in the `tests` directory. The test files ensure that the core functionalities of the simulation and user interface work as expected.
 
