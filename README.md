@@ -3,7 +3,7 @@
 ## Overview
 
 <center>
-<img src="assets/sim.gif">
+<img src="assets/sim.mov">
 </center>
 
 This repository provides a comprehensive framework for running simulations, visualizing results, and providing a user-friendly interface to interact with the simulation environment. The system is built using Python, and the code is modular, allowing for easy scalability and integration with other projects or simulation models. The core components of the framework are organized in the `src` directory, and unit tests are provided to ensure correctness and robustness of the implementation.
