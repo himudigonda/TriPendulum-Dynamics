@@ -31,7 +31,7 @@ class PendulumSimulation(QMainWindow):
 
         This method sets up the main layout, control panel, and plots for the simulation.
         """
-        self.setWindowTitle('Three-Point Pendulum Simulation')
+        self.setWindowTitle('TriPendulum_Dynamics - @himudigonda')
         self.setPalette(create_dark_palette())
         self.showMaximized()
 
