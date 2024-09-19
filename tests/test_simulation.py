@@ -17,6 +17,16 @@ def test_randomize_parameters(simulation):
         assert 5 <= simulation.sliders[param].value() <= 95
 
 def test_start_simulation(simulation):
+    """
+    Test to ensure the simulation starts correctly.
+
+    Args:
+        simulation: An instance of the PendulumSimulation class.
+
+    Asserts:
+        The simulation timer is active after starting the simulation.
+        The frame count is initialized to 0.
+    """
     simulation.initialize_parameters()
     simulation.start_simulation()
     assert simulation.timer.isActive()

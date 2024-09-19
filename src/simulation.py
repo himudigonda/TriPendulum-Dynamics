@@ -1,15 +1,47 @@
 import numpy as np
 from scipy.integrate import solve_ivp
 
+import numpy as np
+from scipy.integrate import solve_ivp
+
 class PendulumSimulator:
+    """
+    A class to simulate the dynamics of a three-point pendulum system.
+
+    This class provides methods to set up and solve the differential equations
+    governing the motion of a three-point pendulum.
+    """
     def __init__(self):
+        """
+        Initialize the PendulumSimulator.
+
+        This constructor initializes the time span, evaluation points, and solution
+        attributes to None.
+        """
         self.t_span = None
         self.t_eval = None
         self.solution = None
 
     def derivatives(self, t, state, m1, m2, m3, L1, L2, L3, b, g):
-        theta1, omega1, theta2, omega2, theta3, omega3 = state
+        """
+        Compute the derivatives of the state variables for the pendulum system.
 
+        Args:
+            t (float): The current time.
+            state (list): The current state of the system [theta1, omega1, theta2, omega2, theta3, omega3].
+            m1 (float): Mass of the first pendulum.
+            m2 (float): Mass of the second pendulum.
+            m3 (float): Mass of the third pendulum.
+            L1 (float): Length of the first pendulum.
+            L2 (float): Length of the second pendulum.
+            L3 (float): Length of the third pendulum.
+            b (float): Damping coefficient.
+            g (float): Acceleration due to gravity.
+
+        Returns:
+            list: The derivatives of the state variables [dtheta1/dt, domega1/dt, dtheta2/dt, domega2/dt, dtheta3/dt, domega3/dt].
+        """
+        theta1, omega1, theta2, omega2, theta3, omega3 = state
         # Constants for convenience
         c1, c2, c3 = np.cos(theta1), np.cos(theta2), np.cos(theta3)
         s1, s2, s3 = np.sin(theta1), np.sin(theta2), np.sin(theta3)

@@ -1,6 +1,16 @@
 from PySide6.QtGui import QPalette, QColor, QLinearGradient, QBrush
 
 def create_dark_palette():
+    """
+    Create a dark color palette for the application.
+
+    This function creates a QPalette object with a dark gradient background
+    and light text color. The gradient transitions from a dark gray to a
+    slightly lighter gray.
+
+    Returns:
+        QPalette: A QPalette object configured with the dark theme.
+    """
     palette = QPalette()
     gradient = QLinearGradient(0, 0, 1, 1)
     gradient.setCoordinateMode(QLinearGradient.StretchToDeviceMode)

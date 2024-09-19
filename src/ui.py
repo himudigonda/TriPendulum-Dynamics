@@ -10,11 +10,27 @@ from .plots import setup_pendulum_plot, setup_energy_plot, setup_velocity_plot
 from .utils import create_dark_palette
 
 class PendulumSimulation(QMainWindow):
+    """
+    Main window class for the Three-Point Pendulum Simulation application.
+
+    This class sets up the user interface, initializes parameters, and handles
+    the simulation logic and plot updates.
+    """
     def __init__(self):
+        """
+        Initialize the PendulumSimulation window.
+
+        This constructor initializes the UI and sets up the simulation parameters.
+        """
         super().__init__()
         self.initUI()
 
     def initUI(self):
+        """
+        Initialize the user interface.
+
+        This method sets up the main layout, control panel, and plots for the simulation.
+        """
         self.setWindowTitle('Three-Point Pendulum Simulation')
         self.setPalette(create_dark_palette())
         self.showMaximized()
@@ -50,6 +66,15 @@ class PendulumSimulation(QMainWindow):
         self.simulator = PendulumSimulator()
 
     def setup_control_panel(self):
+        """
+        Set up the control panel with sliders and buttons.
+
+        This method creates sliders for adjusting simulation parameters and buttons
+        for controlling the simulation.
+
+        Returns:
+            QVBoxLayout: The layout containing the control panel widgets.
+        """
         control_layout = QVBoxLayout()
         self.sliders = {}
 
@@ -170,6 +195,14 @@ class PendulumSimulation(QMainWindow):
         return control_layout
 
     def setup_plots(self):
+        """
+        Set up the plots for the simulation.
+
+        This method creates the pendulum plot, energy plot, and velocity plot.
+
+        Returns:
+            QVBoxLayout: The layout containing the plot widgets.
+        """
         plot_layout = QVBoxLayout()
 
         self.pendulum_plot, self.pendulum_curve, self.pendulum_points, self.trace_curves = setup_pendulum_plot()
@@ -184,6 +217,11 @@ class PendulumSimulation(QMainWindow):
         return plot_layout
 
     def initialize_parameters(self):
+        """
+        Initialize the simulation parameters to default values.
+
+        This method sets the default values for the sliders representing the simulation parameters.
+        """
         self.sliders['m1'].setValue(50)  # 1 kg
         self.sliders['m2'].setValue(50)  # 1 kg
         self.sliders['m3'].setValue(50)  # 1 kg
@@ -198,6 +236,14 @@ class PendulumSimulation(QMainWindow):
         self.sliders['sim_time'].setValue(60)  # 30 seconds
 
     def update_label(self, value, param, label):
+        """
+        Update the label text based on the slider value.
+
+        Args:
+            value (int): The current value of the slider.
+            param (str): The parameter name associated with the slider.
+            label (QLabel): The label to update with the new value.
+        """
         if param in ['m1', 'm2', 'm3', 'L1', 'L2', 'L3']:
             val = value / 50
         elif param == 'b':
@@ -215,14 +261,32 @@ class PendulumSimulation(QMainWindow):
         label.setText(f"{param}: {val:.2f}")
 
     def randomize_parameters(self):
+        """
+        Randomize the simulation parameters.
+
+        This method sets the sliders to random values within their respective ranges.
+        """
         for param in self.sliders:
             random_value = random.uniform(0.05, 0.95) * 100
             self.sliders[param].setValue(int(random_value))
 
     def reset_parameters(self):
+        """
+        Reset the simulation parameters to their default values.
+
+        This method calls initialize_parameters to reset the sliders to their default values.
+        """
         self.initialize_parameters()
 
     def get_parameters(self):
+        """
+        Get the current simulation parameters from the sliders.
+
+        This method retrieves the values from the sliders and converts them to the appropriate units.
+
+        Returns:
+            dict: A dictionary containing the current simulation parameters.
+        """
         params = {}
         for param, slider in self.sliders.items():
             if param in ['m1', 'm2', 'm3', 'L1', 'L2', 'L3']:
@@ -238,6 +302,11 @@ class PendulumSimulation(QMainWindow):
         return params
 
     def start_simulation(self):
+        """
+        Start the pendulum simulation.
+
+        This method retrieves the current parameters, sets up the simulation, and starts the timer.
+        """
         params = self.get_parameters()
         self.simulator.setup_simulation(params)
         self.frame = 0
@@ -245,6 +314,11 @@ class PendulumSimulation(QMainWindow):
         self.timer.start(20)  # 50 fps
 
     def toggle_play_pause(self):
+        """
+        Toggle the play/pause state of the simulation.
+
+        This method starts or stops the timer based on its current state and updates the button text.
+        """
         if self.timer.isActive():
             self.timer.stop()
             self.play_pause_button.setText('Play')
@@ -253,6 +327,11 @@ class PendulumSimulation(QMainWindow):
             self.play_pause_button.setText('Pause')
 
     def update_plots(self):
+        """
+        Update the plots with the current simulation data.
+
+        This method updates the pendulum plot, energy plot, velocity plot, and progress bar based on the current frame.
+        """
         if self.frame >= len(self.simulator.t_eval):
             self.timer.stop()
             return

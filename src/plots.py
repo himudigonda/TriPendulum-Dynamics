@@ -24,6 +24,16 @@ def setup_pendulum_plot():
     return pendulum_plot, pendulum_curve, pendulum_points, trace_curves
 
 def setup_energy_plot():
+    """
+    Set up the energy plot for the simulation.
+
+    This function creates a plot widget for displaying the kinetic, potential,
+    and total energy of the pendulum system over time.
+
+    Returns:
+        tuple: A tuple containing the energy plot widget and the curves for kinetic,
+               potential, and total energy.
+    """
     energy_plot = pg.PlotWidget()
     energy_plot.addLegend()
     energy_plot.setTitle("Energy vs Time")
@@ -36,6 +46,16 @@ def setup_energy_plot():
     return energy_plot, kinetic_curve, potential_curve, total_curve
 
 def setup_velocity_plot():
+    """
+    Set up the velocity plot for the simulation.
+
+    This function creates a plot widget for displaying the angular velocities
+    of the pendulum system over time.
+
+    Returns:
+        tuple: A tuple containing the velocity plot widget and the curves for the
+               angular velocities of the three pendulums.
+    """
     velocity_plot = pg.PlotWidget()
     velocity_plot.addLegend()
     velocity_plot.setTitle("Angular Velocity vs Time")
